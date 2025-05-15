@@ -34,7 +34,7 @@ public class TaskExample {
                         System.out.println(taskId + " Succeeded!");
                     }
                 });
-        RScheduledExecutorService executor = redissonClient.getExecutorService("executor2");
+        RScheduledExecutorService executor = redissonClient.getExecutorService("myExecutor1");
         executor.registerWorkers(options);
 
         executor.submit((Runnable & Serializable) () -> {
