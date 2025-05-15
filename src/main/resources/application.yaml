@@ -1,0 +1,28 @@
+server:
+  port: 2025
+
+spring:
+  redis:
+    redisson:
+      file: classpath:redisson.yaml
+  output:
+    ansi:
+      enabled: always
+
+management:
+  metrics:
+    enable:
+      redisson: true
+  health:
+    redis:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  server:
+    port: 7182
+  endpoint:
+    health:
+      show-components: always
+      show-details: always

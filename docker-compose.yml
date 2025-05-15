@@ -1,0 +1,111 @@
+name: redis-cluster
+services:
+  redis-cluster-0:
+    container_name: redis-cluster-0
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6379:6379
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6379'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6379'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+    networks:
+      - redis-network
+
+  redis-cluster-1:
+    container_name: redis-cluster-1
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6380:6380
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6380'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6380'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+    networks:
+      - redis-network
+
+  redis-cluster-2:
+    container_name: redis-cluster-2
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6381:6381
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6381'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6381'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+    networks:
+      - redis-network
+
+  redis-cluster-3:
+    container_name: redis-cluster-3
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6382:6382
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6382'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6382'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+    networks:
+      - redis-network
+
+  redis-cluster-4:
+    container_name: redis-cluster-4
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6383:6383
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6383'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6383'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+    networks:
+      - redis-network
+
+  redis-cluster-5:
+    container_name: redis-cluster-5
+    image: bitnami/redis-cluster:latest
+    ports:
+      - 6384:6384
+    depends_on:
+      - redis-cluster-0
+      - redis-cluster-1
+      - redis-cluster-2
+      - redis-cluster-3
+      - redis-cluster-4
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_NODES=redis-cluster-0:6379 redis-cluster-1:6380 redis-cluster-2:6381 redis-cluster-3:6382 redis-cluster-4:6383 redis-cluster-5:6384'
+      - 'REDIS_PORT_NUMBER=6384'
+      - 'REDIS_CLUSTER_ANNOUNCE_HOSTNAME=127.0.0.1'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6384'
+      - 'REDIS_CLUSTER_PREFERRED_ENDPOINT_TYPE=ip'
+      - 'REDIS_CLUSTER_REPLICAS=1'
+      - 'REDIS_CLUSTER_CREATOR=yes'
+    networks:
+      - redis-network
+
+  redis-insight:
+    container_name: redis-insight
+    image: redis/redisinsight:latest
+    ports:
+      - 5540:5540
+    networks:
+      - redis-network
+
+networks:
+  redis-network:
+    driver: bridge
