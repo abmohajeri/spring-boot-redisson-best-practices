@@ -1,4 +1,4 @@
-# Spring Boot + Redisson Best Practices
+# Spring Boot Redisson Best Practices
 
 Best practices for integrating [Redisson](https://github.com/redisson/redisson)
 with [Spring Boot](https://spring.io/projects/spring-boot), including configuration tips, distributed locking, and
