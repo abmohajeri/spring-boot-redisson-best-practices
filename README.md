@@ -1,12 +1,14 @@
-# 🧠 Spring Boot + Redisson Best Practices
+# Spring Boot + Redisson Best Practices
 
-A curated collection of **best practices** and **practical examples** for integrating [Redisson](https://github.com/redisson/redisson) with [Spring Boot](https://spring.io/projects/spring-boot).
+Best practices for integrating [Redisson](https://github.com/redisson/redisson)
+with [Spring Boot](https://spring.io/projects/spring-boot), including configuration tips, distributed locking, and
+real-world usage examples.
 
-> All examples are built with **Spring Boot 3.4.5** and **Redisson 3.45.1**.
+All examples are built with **Spring Boot 3.4.5** and **Redisson 3.45.1**.
 
 ---
 
-## 📦 What’s Inside
+## What’s Inside
 
 This project includes ready-to-use examples for:
 

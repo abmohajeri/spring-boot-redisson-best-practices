@@ -28,7 +28,6 @@ public class PubSubExample {
                 System.out.println("Message is: " + message);
             }
         });
-
         topic.publish(1);
         topic.publish(2);
         topic.publish(3);
@@ -40,7 +39,6 @@ public class PubSubExample {
                 System.out.println("Message is: " + message);
             }
         });
-
         rTopic.publish(1);
         rTopic.publish(2);
         rTopic.publish(3);
