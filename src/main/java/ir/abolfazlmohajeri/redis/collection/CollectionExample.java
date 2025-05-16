@@ -8,6 +8,9 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by abolfazl on 2025-05-15
  **/
@@ -21,6 +24,8 @@ public class CollectionExample {
     public void init() {
         RBucket<String> bucket = redissonClient.getBucket("myKey");
         bucket.set("Hello, Redisson!");
+        System.out.println(bucket.get());
+        bucket.set("Hello, Redisson with TTL!", Duration.ofSeconds(5));
         System.out.println(bucket.get());
 
         RList<String> list = redissonClient.getList("myList");
@@ -52,5 +57,11 @@ public class CollectionExample {
         bitSet.set(0, true);
         bitSet.set(1, false);
         System.out.println(bitSet.get(0));
+
+        RMapCache<String, String> mapCache = redissonClient.getMapCache("myMapCache");
+        mapCache.put("hello", "world", 30, TimeUnit.SECONDS);
+
+        RMapCacheNative<String, String> mapCacheNative = redissonClient.getMapCacheNative("myNativeMapCache");
+        mapCacheNative.put("hello", "world", Duration.ofSeconds(10));
     }
 }
