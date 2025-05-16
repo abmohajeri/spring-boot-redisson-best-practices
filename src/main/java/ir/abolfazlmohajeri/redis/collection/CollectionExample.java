@@ -38,6 +38,7 @@ public class CollectionExample {
         set.add("B");
         set.add("A");
         System.out.println(set.contains("B"));
+        redissonClient.getKeys().expire("mySet", 30, TimeUnit.SECONDS);
 
         RMap<String, Integer> map = redissonClient.getMap("myMap");
         map.put("views", 10);
